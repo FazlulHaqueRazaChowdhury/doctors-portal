@@ -8,7 +8,7 @@ const Banner = () => {
         }}>
             <div class="hero min-h-screen ">
                 <div class="hero-content flex-col lg:flex-row-reverse ">
-                    <img src={img} class="max-w-[595px] rounded-lg shadow-2xl ml-[24px]" />
+                    <img src={img} class="lg:max-w-[595px] rounded-lg shadow-2xl lg:ml-[24px] mx-auto" />
                     <div>
                         <h1 class="text-[48px] text-accent font-bold">Your New Smile Starts <br /> Here</h1>
                         <p class="py-6 text-[16px]">Lorem Ipsum is simply dummy text of the printing and typesetting industry. Lorem Ipsum has been the industry's standard dummy text ever since the</p>
