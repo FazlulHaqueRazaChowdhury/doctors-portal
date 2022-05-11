@@ -5,10 +5,10 @@ const ServiceCard = ({ service }) => {
     return (
 
         <div>
-            <div class="card card-compact w-96 bg-base-100 shadow-xl mx-auto p-5">
+            <div className="card  card-compact lg:w-96 bg-base-100 shadow-xl mx-auto p-5">
                 <figure><img src={icon} alt="Shoes" /></figure>
-                <div class="card-body text-center">
-                    <h2 class="card-title text-accent mx-auto text-center">{title}</h2>
+                <div className="card-body text-center">
+                    <h2 className="card-title text-accent mx-auto text-center">{title}</h2>
                     <p>{desc}</p>
 
                 </div>
