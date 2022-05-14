@@ -1,5 +1,8 @@
+import { signOut } from 'firebase/auth';
 import React from 'react';
+import { useAuthState } from 'react-firebase-hooks/auth';
 import { Link, useLocation } from 'react-router-dom';
+import auth from '../../firebase.init';
 const Header = () => {
     const navData = [
         { name: 'Home', path: '/' },
@@ -7,9 +10,13 @@ const Header = () => {
         { name: 'Appointment', path: '/appointment' },
         { name: 'Reviews', path: '/reviews' },
         { name: 'Contact Us', path: '/contactUs' },
-        { name: 'Log In', path: '/logIn' }
+
     ]
+    const [user, loading] = useAuthState(auth);
     const location = useLocation();
+    if (loading) {
+        return <p>Loading</p>
+    }
 
     return (
         <div className='container mx-auto bg-transparent'>
@@ -33,6 +40,19 @@ const Header = () => {
                         {
                             navData.map(nav => <li><Link className={`${location.pathname === nav.path ? 'bg-accent text-white' : ''} whitespace-nowrap hover:bg-accent hover:text-white mx-2 `} to={nav.path}>{nav.name}</Link></li>)
                         }
+
+                        {
+                            user ? <li className='btn btn-accent text-white'><p>{user.displayName}</p></li> : <li><Link to='/logIn' className={`${location.pathname === '/logIn' ? 'bg-accent text-white' : ''} whitespace-nowrap hover:bg-accent hover:text-white mx-2 `}>Log In</Link></li>
+                        }
+                        {
+                            user ? <li> <img src={user.photoURL} width='50px' height='50px' className='rounded-cirlce' alt="" /> </li> : ''
+                        }
+                        {
+                            user ? <li><button className='btn btn-accent text-white whitespace-nowrap ' onClick={() => {
+                                signOut(auth);
+                            }}>Sign Out</button></li> : ""
+                        }
+
                     </ul>
                 </div>
 

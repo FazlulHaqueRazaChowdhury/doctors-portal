@@ -20,3 +20,11 @@
   background-image: url('./assets/images/footer.png');
   background-size: cover;
 }
+.rdp-day_selected:not([disabled]), .rdp-day_selected:focus:not([disabled]), .rdp-day_selected:active:not([disabled]), .rdp-day_selected:hover:not([disabled]){
+  border: 0;
+  background-image: linear-gradient(#19D3AE,#0FCFEC) !important;
+  color: white;
+}
+.rdp-weeknumber, .rdp-day{
+  border: 0 !important;
+}
