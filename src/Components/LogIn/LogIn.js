@@ -3,6 +3,7 @@ import { useSignInWithEmailAndPassword, useSignInWithGoogle } from 'react-fireba
 import auth from '../../firebase.init';
 import { useForm } from "react-hook-form";
 import { Link, useLocation, useNavigate } from 'react-router-dom';
+import useToken from '../../hooks/useToken';
 const LogIn = () => {
     const [signInWithGoogle, googleUser, googleLoading, googleError] = useSignInWithGoogle(auth);
 
@@ -12,25 +13,24 @@ const LogIn = () => {
         loading,
         error,
     ] = useSignInWithEmailAndPassword(auth);
-
+    const [token] = useToken(user || googleUser);
     const { register, formState: { errors }, handleSubmit } = useForm();
     const onSubmit = data => signInWithEmailAndPassword(data.email, data.password);
-    //
-
-
     let navigate = useNavigate();
     let location = useLocation();
     let from = location.state?.from?.pathname || "/";
-    if (user || googleUser) {
+    if (token) {
         navigate(from, { replace: true });
     }
+
     return (
         <div className='flex justify-center items-center h-screen'>
-            <div class="card border rounded-lg lg:w-96 bg-base-100 shadow-xl">
-                <div class="card-body">
-                    <h2 class="card-title text-[#000000] text-[20px] mx-auto">Login</h2>
+            <div className="card border rounded-lg lg:w-96 bg-base-100 shadow-xl">
+                <div className="card-body">
+
+                    <h2 className="card-title text-[#000000] text-[20px] mx-auto">Login</h2>
                     <form onSubmit={handleSubmit(onSubmit)} className='flex flex-col gap-y-[10px]'>
-                        <label htmlFor="email">Email:</label>
+                        <label htmlhtmlFor="email">Email:</label>
                         <input className='input input-bordered w-full'  {...register("email", {
                             required: {
                                 value: true,
@@ -46,7 +46,7 @@ const LogIn = () => {
                         <p className='text-[10px] text-red-500'>{errors?.email?.type === 'required' ? errors?.email?.message : ''}</p>
 
 
-                        <label htmlFor="password">Password:</label>
+                        <label htmlhtmlFor="password">Password:</label>
                         <input type='password' className='input input-bordered w-full'  {...register("password", {
                             required: {
                                 value: true,
@@ -66,14 +66,14 @@ const LogIn = () => {
                     </form>
 
                     <p className='text-[12px] mx-auto'>New to Doctors Portal?<Link to='/signUp' className='text-secondary ml-[2px]'>Create new account</Link></p>
-                    <div class="divider">OR</div>
+                    <div className="divider" > OR</div >
                     <button className='btn btn-outline btn-accent' onClick={() => {
                         signInWithGoogle();
                     }}>CONTINUE WITH GOOGLE</button>
 
-                </div>
-            </div>
-        </div>
+                </div >
+            </div >
+        </div >
 
     );
 };

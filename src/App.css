@@ -28,3 +28,6 @@
 .rdp-weeknumber, .rdp-day{
   border: 0 !important;
 }
+.bookingModal div{
+  z-index: 10;
+}

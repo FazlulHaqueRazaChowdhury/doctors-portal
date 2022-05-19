@@ -8,9 +8,9 @@ const AppointmentBanner = ({ selected, setSelected }) => {
 
     return (
         <div id='main-bg'>
-            <div class="hero min-h-[700px]">
-                <div class="hero-content flex-col lg:flex-row-reverse gap-x-[120px]">
-                    <img src={img} class="lg:w-[590px] rounded-lg shadow-2xl" />
+            <div className="hero min-h-[700px]">
+                <div className="hero-content flex-col lg:flex-row-reverse gap-x-[120px]">
+                    <img src={img} className="lg:w-[590px] rounded-lg shadow-2xl" />
                     <div className='bg-white shadow-lg rounded'>
                         <DayPicker
                             mode="single"
@@ -20,8 +20,8 @@ const AppointmentBanner = ({ selected, setSelected }) => {
                         />
                     </div>
                 </div>
-            </div>
-        </div>
+            </div >
+        </div >
     );
 };
 
